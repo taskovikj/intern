@@ -1,0 +1,35 @@
+body {
+    padding: 10px;
+}
+.listing-cards {
+        margin-top: 20px; /* Add some spacing between cards */
+    }
+
+    .listing-card {
+        display: flex;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .image-container {
+        flex: 0 0 40%; /* Adjust the value to control the image width */
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .listing-details {
+        flex: 0 0 60%; /* Adjust the value to control the listing details width */
+        padding: 10px;
+    }
+
+    .placeholder-image {
+        width: 100%;
+        height: 200px; /* Adjust the height of the placeholder image */
+        background-color: #f0f0f0;
+    }

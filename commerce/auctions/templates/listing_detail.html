@@ -1,0 +1,56 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>{{ listing.title }}</h2>
+    <p>Description: {{ listing.description }}</p>
+    <p>Starting Price: ${{ listing.starting_price }}</p>
+    <p>Current Price: ${{ listing.current_price }}</p>
+    {% if listing.highest_bidder.username %}
+        <p>Highest Bidder: {{ listing.highest_bidder }}</p>
+    {% elif not listing.closed %}
+        <p>Be the first to bid for this item</p>
+    {% endif %}
+    {% if listing.image_url %}
+        <img src="{{ listing.image_url }}" alt="{{ listing.title }}" style="max-width: 200px;">
+    {% endif %}
+    <p>Creator: {{ listing.creator }}</p>
+    <p>Categories:
+        {% for category in listing.categories.all %}
+            {{ category.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+
+
+    {% if request.user.is_authenticated %}
+        {% if not listing.closed and listing.creator != request.user %}
+            <h2>Bid Now:</h2>
+            <form method="post" action="{% url 'listing_detail' listing.id %}">
+                {% csrf_token %}
+                <input type="number" name="bid_amount" step="0.01" min="{{ listing.starting_price }}" value="{{ listing.current_price }}">
+                <input type="submit" value="Place Bid">
+            </form>
+        {% endif %}
+
+        {% if listing.creator == request.user %}
+            {% if listing.closed %}
+                <p>This auction is closed. The highest bidder is {{ listing.highest_bidder.username }}.</p>
+            {% else %}
+                <a href="{% url 'close_auction' listing.id %}">Close Auction</a>
+            {% endif %}
+        {% endif %}
+
+        <h2>Add Comment:</h2>
+        <form method="post" action="{% url 'listing_detail' listing.id %}">
+            {% csrf_token %}
+            <textarea name="text" cols="30" rows="4"></textarea>
+            <input type="submit" value="Add Comment">
+        </form>
+    {% endif %}
+<h2>Comments:</h2>
+    {% for comment in listing.comments.all %}
+        <p>{{ comment.text }} (by {{ comment.user.username }})</p>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+{% endblock %}

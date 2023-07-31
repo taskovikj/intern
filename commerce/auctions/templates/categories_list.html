@@ -1,0 +1,31 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>My Listings</h2>
+<div class="listing-cards">
+        {% for listing in listings %}
+            <div class="listing-card">
+                <div class="image-container">
+                    {% if listing.image_url %}
+                        <img src="{{ listing.image_url }}" alt="{{ listing.title }}">
+                    {% else %}
+                        <!-- Add a placeholder image here if there's no image_url -->
+                        <div class="placeholder-image"></div>
+                    {% endif %}
+                </div>
+                <div class="listing-details">
+                    <strong><a href="{% url 'listing_detail' listing.id %}">{{ listing.title }}</a></strong><br>
+                    <p>Starting Price: ${{ listing.starting_price }}</p>
+                    <form action="{% url 'add_to_watchlist' listing.id %}" method="post">
+                        {% csrf_token %}
+                        {% if listing in watchlist %}
+                            <button class="card-button" type="submit" disabled>Already in Watchlist</button>
+                        {% else %}
+                            <button type="submit">Add to Watchlist</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

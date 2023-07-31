@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="container">
+        <h2>Watchlist</h2>
+        <div class="listing-cards">
+            {% for listing in watchlist_listings %}
+                <div class="listing-card">
+                    <div class="image-container">
+                        {% if listing.image_url %}
+                            <img src="{{ listing.image_url }}" alt="{{ listing.title }}">
+                        {% else %}
+                            <div class="placeholder-image"></div>
+                        {% endif %}
+                    </div>
+                    <div class="listing-details">
+                        <strong><a href="{% url 'listing_detail' listing.id %}">{{ listing.title }}</a></strong><br>
+                        <p>Starting Price: ${{ listing.starting_price }}</p>
+                        <form action="{% url 'remove_from_watchlist' listing.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Remove from Watchlist</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
