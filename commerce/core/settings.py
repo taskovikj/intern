@@ -117,7 +117,7 @@ else:
             'USER': 'postgres',
             'PASSWORD': 'postgres',
             # Use "postgres" when you are using docker or "qwer1234" when local
-            'HOST': 'c',  # Use "pgdb" when you are using docker or "localhost" when local
+            'HOST': 'pgdb',  # Use "pgdb" when you are using docker or "localhost" when local
             'PORT': '5432',  # Or your database server port
         }
     }
