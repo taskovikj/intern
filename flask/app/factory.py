@@ -1,7 +1,7 @@
-from flask import Flask
+from .flask import Flask
 import os
 from .celery_utils import init_celery
-from app.views import bp
+from .views import bp
 
 PKG_NAME = os.path.dirname(os.path.realpath(__file__)).split("/")[-1]
 

@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Listing, Watchlist, Comment,BiddingLogg
+from .models import Listing, Watchlist, Comment, BiddingLogg
 
 from .models import User, Category
 

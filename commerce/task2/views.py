@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from task2.forms import ReviewForm
+from .forms import ReviewForm
 from django.views.generic.edit import FormView
 from django.http import HttpResponse
-# Create your views here.
 
+
+# Create your views here.
 
 
 class ReviewEmailView(FormView):

@@ -1,5 +1,5 @@
 from django import forms
-from task2.tasks import send_review_email_task
+from .tasks import send_review_email_task
 
 
 class ReviewForm(forms.Form):

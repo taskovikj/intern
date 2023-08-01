@@ -1,4 +1,5 @@
-from auctions.models import PageVisited
+from .models import PageVisited, Listing
+from django.shortcuts import get_object_or_404
 
 
 class PageVisitMiddleware:

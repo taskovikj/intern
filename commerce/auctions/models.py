@@ -18,7 +18,8 @@ class Listing(models.Model):
     description = models.TextField()
     starting_price = models.DecimalField(max_digits=10, decimal_places=2)
     current_price = models.DecimalField(max_digits=10, decimal_places=2)
-    highest_bidder = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='highest_bids')
+    highest_bidder = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL,
+                                       related_name='highest_bids')
     closed = models.BooleanField(default=False)
     image_url = models.URLField(blank=True, null=True)
     categories = models.ManyToManyField(Category)
@@ -59,4 +60,3 @@ class BiddingLogg(models.Model):
     listing1 = models.ForeignKey(Listing, on_delete=models.CASCADE)
     bid_amount = models.DecimalField(max_digits=10, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
-
