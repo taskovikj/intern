@@ -20,6 +20,6 @@ urlpatterns = [
     path('listing/<int:listing_id>/', views.listing_detail, name='listing_detail'),
     path('listing/<int:listing_id>/close/', views.close_auction, name='close_auction'),
     path('category_listings/<int:category_id>/', views.list_category, name='category_listings'),
-
-    path('my_profile/', views.my_profile, name='my_profile')
+    path('create_entities/', views.create_entities, name='create_entities'),
+    path('my_profile/', views.my_profile, name='my_profile'),
 ]

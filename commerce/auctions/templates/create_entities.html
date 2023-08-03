@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Entities</title>
+</head>
+<body>
+    <h1>Create Entities</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="num_categories">Number of Categories:</label>
+        <input type="number" name="num_categories" id="num_categories"><br>
+
+        <label for="num_users">Number of Users:</label>
+        <input type="number" name="num_users" id="num_users"><br>
+
+        <label for="num_listings">Number of Listings:</label>
+        <input type="number" name="num_listings" id="num_listings"><br>
+        <label for="img_link">Image link</label>
+        <input  name="img_link" id="img_link"><br>
+
+        <label for="num_logs">Number of Logs for Visits:</label>
+        <input type="number" name="num_logs" id="num_logs"><br>
+
+        <label for="num_bid_logs">Number of Logs for Bids:</label>
+        <input type="number" name="num_bid_logs" id="num_bid_logs"><br>
+
+        <input type="submit" value="Create Entities">
+    </form>
+</body>
+</html>

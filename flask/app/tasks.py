@@ -1,6 +1,5 @@
-from app import celery
+from ..app import celery
 from time import sleep
-
 
 
 @celery.task()
