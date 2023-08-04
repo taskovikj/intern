@@ -70,11 +70,12 @@
             top: 5%;
             width: 100%;
             text-align: center;
-            font-family: oswald;
-            font-size: 108px;
+            font-family: SpaceGrotesk-Light;
+            color: #fff;
+            line-height: 1.2;
             font-weight: 500;
-            text-transform: uppercase;
-            line-height: 1;
+            font-size: 64px;
+            margin-bottom: 40px;
 
         }
 
@@ -201,61 +202,62 @@
         .navbar-nav li {
             margin-right: 15px; /* Add some spacing between the navigation links */
         }
+
         .slider {
-  width: 100%;
-  height: 200px;
-  position: relative;
-  margin: auto;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
+            width: 100%;
+            height: 200px;
+            position: relative;
+            margin: auto;
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
 
-.slider::-webkit-scrollbar {
-  display: none;
-}
+        .slider::-webkit-scrollbar {
+            display: none;
+        }
 
-.slider .slide {
-  display: flex;
-  position: absolute;
-  left: 0;
-  transition: 0.3s left ease-in-out;
-}
+        .slider .slide {
+            display: flex;
+            position: absolute;
+            left: 0;
+            transition: 0.3s left ease-in-out;
+        }
 
-.slider .item {
-  margin-right: 10px;
-}
+        .slider .item {
+            margin-right: 10px;
+        }
 
-.slider .item:last-child {
-  margin-right: 0;
-}
+        .slider .item:last-child {
+            margin-right: 0;
+        }
 
-.ctrl {
-  text-align: center;
-  margin-top: 5px;
-}
+        .ctrl {
+            text-align: center;
+            margin-top: 5px;
+        }
 
-.ctrl-btn {
-  padding: 20px 20px;
-  min-width: 50px;
-  background: #fff;
-  border: none;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
+        .ctrl-btn {
+            padding: 20px 20px;
+            min-width: 50px;
+            background: #fff;
+            border: none;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
 
-  position: absolute;
-  top: 50%;
-  margin-top: -27.5px;
-}
+            position: absolute;
+            top: 50%;
+            margin-top: -27.5px;
+        }
 
-.ctrl-btn.pro-prev {
-  left: 0;
-}
+        .ctrl-btn.pro-prev {
+            left: 0;
+        }
 
-.ctrl-btn.pro-next {
-  right: 0;
-}
+        .ctrl-btn.pro-next {
+            right: 0;
+        }
     </style>
 </head>
 <body>
