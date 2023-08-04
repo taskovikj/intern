@@ -37,6 +37,7 @@ services:
             - "8000:8000"
         image: django  # Assign a name and tag to the built image
         container_name: django_container
+        command: /bin/sh -c "entrypoint.sh"
 #        command: python manage.py runserver 0.0.0.0:8000
 #        command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
 
