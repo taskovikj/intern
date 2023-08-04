@@ -1,17 +1,21 @@
 # Django eCommerce project
 
 
-### Installation
+### 1.1 Installation on Docker
 
 ```bash
 git clone https://github.com/taskovikj/commerce.git
 ```
 ```bash
-cd commecre
+docker-compose up -d --build
 ```
 
-### Run Migrations
+### 1.2 Create database according to settings.py
+### 1.3 Run migrations
 
+```bash
+docker exec -it django_container sh
+```
 ```bash
 python manage.py makemigrations aucions
 ```
@@ -20,7 +24,7 @@ python manage.py migrate
 ```
 
 
-### Build & Launch
+### 1.4 Restart django container
 
 ```
 python manage.py runserver
