@@ -25,7 +25,8 @@ def index(request):
     listings_photo = request.GET.get('show_with_photo')
     no_bidders = request.GET.get('no_bidders')
     active_listings = request.GET.get('active_listings')
-
+    user_watchlist, created = Watchlist.objects.get_or_create(user=request.user)
+    watchlist_listings = user_watchlist.listings.all()
     listings = Listing.objects.all()
 
     if query:
@@ -66,8 +67,9 @@ def index(request):
     except EmptyPage:
         listings = paginator.page(paginator.num_pages)
 
+    slider_items = Listing.objects.all().order_by('-id')[:3]
     return render(request, 'auctions/index.html', {
-        'listings': listings,
+        'listings': listings, 'slider_items': slider_items, 'watchlist_listings': watchlist_listings
     })
 
 
@@ -296,8 +298,6 @@ def my_profile(request):
     return render(request, 'my_profile.html', {'user': user})
 
 
-
-
 def generate_random_string(length=6):
     letters = string.ascii_letters
     return ''.join(random.choice(letters) for i in range(length))
@@ -333,7 +333,7 @@ def create_users(num_users):
     return "Users created successfully."
 
 
-def create_listings(num_listings,img_link):
+def create_listings(num_listings, img_link):
     categories = Category.objects.all()
     users = User.objects.all()
 
@@ -424,7 +424,7 @@ def create_entities(request):
             result.append(create_users(int(num_users)))
 
         if num_listings.isdigit() and int(num_listings) > 0:
-            result.append(create_listings(int(num_listings),img_link))
+            result.append(create_listings(int(num_listings), img_link))
 
         if num_logs.isdigit() and int(num_logs) > 0:
             result.append(create_logs(int(num_logs)))
@@ -438,4 +438,3 @@ def create_entities(request):
         return HttpResponse("\n".join(result))
 
     return render(request, 'create_entities.html')
-

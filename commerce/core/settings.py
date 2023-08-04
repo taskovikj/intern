@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'livesync',
     'django.contrib.staticfiles',
     'task1',
     'task2',
@@ -56,7 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'auctions.middleware.PageVisitMiddleware'
+    'auctions.middleware.PageVisitMiddleware',
+    'livesync.core.middleware.DjangoLiveSyncMiddleware',
+
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -78,6 +81,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'local',
+        'USER': 'user',
+        'PASSWORD': 'user',
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -91,36 +102,36 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #     }
 # }
 
-if not DEBUG:
-    # Production Database configuration
-    print("Production Database configuration")
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('PRODUCTION_POSTGRES_NAME'),
-            'USER': os.environ.get('PRODUCTION_POSTGRES_USER'),
-            'PASSWORD': os.environ.get('PRODUCTION_POSTGRES_PASSWORD'),
-            # Use "postgres" when you are using docker or "qwer1234" when local
-            'HOST': os.environ.get('PRODUCTION_POSTGRES_HOST'),
-            # Use "pgdb" when you are using docker or "localhost" when local
-            'PORT': '5432',  # Or your database server port
-        }
-    }
-
-else:
-    # Local Database configuration
-    print("Local Database configuration")
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            # Use "postgres" when you are using docker or "qwer1234" when local
-            'HOST': 'pgdb',  # Use "pgdb" when you are using docker or "localhost" when local
-            'PORT': '5432',  # Or your database server port
-        }
-    }
+# if not DEBUG:
+#     # Production Database configuration
+#     print("Production Database configuration")
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': os.environ.get('PRODUCTION_POSTGRES_NAME'),
+#             'USER': os.environ.get('PRODUCTION_POSTGRES_USER'),
+#             'PASSWORD': os.environ.get('PRODUCTION_POSTGRES_PASSWORD'),
+#             # Use "postgres" when you are using docker or "qwer1234" when local
+#             'HOST': os.environ.get('PRODUCTION_POSTGRES_HOST'),
+#             # Use "pgdb" when you are using docker or "localhost" when local
+#             'PORT': '5432',  # Or your database server port
+#         }
+#     }
+#
+# else:
+#     # Local Database configuration
+#     print("Local Database configuration")
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'postgres',
+#             'USER': 'postgres',
+#             'PASSWORD': 'postgres',
+#             # Use "postgres" when you are using docker or "qwer1234" when local
+#             'HOST': 'pgdb',  # Use "pgdb" when you are using docker or "localhost" when local
+#             'PORT': '5432',  # Or your database server port
+#         }
+#     }
 
 AUTH_USER_MODEL = 'auctions.User'
 
