@@ -26,7 +26,7 @@ def index(request):
     no_bidders = request.GET.get('no_bidders')
     active_listings = request.GET.get('active_listings')
     user_watchlist, created = Watchlist.objects.get_or_create(user=request.user)
-    watchlist_listings = user_watchlist.listings.all()
+
     listings = Listing.objects.all()
 
     if query:
@@ -69,7 +69,7 @@ def index(request):
 
     slider_items = Listing.objects.all().order_by('-id')[:3]
     return render(request, 'auctions/index.html', {
-        'listings': listings, 'slider_items': slider_items, 'watchlist_listings': watchlist_listings
+        'listings': listings, 'slider_items': slider_items
     })
 
 
